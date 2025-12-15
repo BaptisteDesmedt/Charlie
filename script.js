@@ -258,17 +258,14 @@ function toggleTheme() {
     document.body.classList.toggle('dark-mode');
     const isDark = document.body.classList.contains('dark-mode');
 
-    // Update icon
     themeBtn.textContent = isDark ? '☀️' : '🌙';
 
-    // Save persistence
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
 function initTheme() {
     const savedTheme = localStorage.getItem('theme');
 
-    // Check saved preference or system preference
     if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.body.classList.add('dark-mode');
         themeBtn.textContent = '☀️';
@@ -280,7 +277,6 @@ function initTheme() {
 
 themeBtn.addEventListener('click', toggleTheme);
 
-// Lancement au chargement
 window.onload = () => {
     initTheme();
     initLevel(0);

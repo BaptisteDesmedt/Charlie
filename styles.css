@@ -20,24 +20,24 @@
     --highlight-clip: text;
     --highlight-fill: transparent;
 
-    --btn-bg: #ffffff; /* Keep white button background */
-    --btn-border: rgba(52,152,219,0.2); /* Blue border */
-    --btn-color: #3498db; /* Blue button text */
-    --btn-hover-bg: #3498db; /* Blue hover background */
-    --btn-hover-color: #fff; /* White hover text */
-    --btn-hover-border: #3498db; /* Blue hover border */
+    --btn-bg: #ffffff;
+    --btn-border: rgba(52,152,219,0.2);
+    --btn-color: #3498db;
+    --btn-hover-bg: #3498db;
+    --btn-hover-color: #fff;
+    --btn-hover-border: #3498db;
 
-    --marker-miss-color: #ff1800; /* Red for misses */
-    --marker-found-color: #27ae60; /* Green for found */
+    --marker-miss-color: #ff1800;
+    --marker-found-color: #27ae60;
 
-    --footer-bg: #3498db; /* Blue footer background */
-    --footer-text: #fff; /* White footer text */
+    --footer-bg: #3498db;
+    --footer-text: #fff;
 
-    --modal-overlay: rgba(0, 0, 0, 0.5); /* Darker overlay for better focus */
-    --modal-bg: #fff; /* White modal background */
-    --modal-border: #3498db; /* Blue modal border */
-    --modal-shadow: 0 20px 50px rgba(52, 152, 219, 0.3); /* Blue shadow */
-    --modal-text: #2c3e50; /* Dark modal text */
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+    --modal-bg: #fff;
+    --modal-border: #3498db;
+    --modal-shadow: 0 20px 50px rgba(52, 152, 219, 0.3);
+    --modal-text: #2c3e50;
 }
 
 /* DARK MODE OVERRIDES */
@@ -64,7 +64,7 @@ body.dark-mode {
     --btn-hover-color: #fff;
     --btn-hover-border: #ff0025;
 
-    --footer-bg: transparent;
+    --footer-bg: #ff0025;
     --footer-text: rgba(255, 255, 255, 0.4);
 
     --modal-overlay: rgba(0, 0, 0, 0.9);
@@ -324,14 +324,9 @@ main {
 #game-container {
     position: relative;
     flex: 1;
-    /* Force le conteneur à prendre toute la hauteur disponible du main */
     width: 100%;
-    /* box-shadow supprimé car on colle aux bords */
-    /* border-radius supprimé */
     overflow: auto;
-    /* Permet de scroller si l'image est plus grande */
     background: transparent;
-    /* Plus de fond noir ! */
     display: flex;
     cursor: crosshair;
     justify-content: center;
@@ -340,7 +335,6 @@ main {
 
 #game-image {
     display: block;
-    /* On laisse l'image déterminer sa taille en respectant les contraintes */
     max-width: 100%;
     max-height: 100%;
     width: auto;
@@ -350,7 +344,6 @@ main {
     -webkit-user-drag: none;
     transition: opacity 0.3s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for depth */
     border-radius: 8px;
 }
 
@@ -359,7 +352,7 @@ body.dark-mode #game-image {
 }
 
 
-/* Indicateurs de clic */
+/* Click Indicator */
 .marker-miss {
     position: absolute;
     width: 40px;
@@ -371,7 +364,6 @@ body.dark-mode #game-image {
     animation: fadeOut 1s forwards;
     box-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
     z-index: 100;
-    /* Assure que le marqueur est au-dessus de tout */
 }
 
 .marker-found {
@@ -414,7 +406,7 @@ body.dark-mode #game-image {
 }
 
 /* =========================================
-   CONFETTI (FIN DU JEU)
+   CONFETTI (End of Game)
    ========================================= */
 .confetti {
     position: fixed;
@@ -456,7 +448,7 @@ footer {
 }
 
 /* =========================================
-   MODAL (VICTOIRE)
+   MODAL (WINNER SCREEN)
    ========================================= */
 .modal {
     position: fixed;
