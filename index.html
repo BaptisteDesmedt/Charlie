@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Où est Charlie ?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-glass">
+            <div class="header-content">
+                <div class="logo-container">
+                    <span class="logo-icon">🔍</span>
+                    <h1>Où est <span class="highlight">Charlie</span> ?</h1>
+                </div>
+
+                <div class="game-hud">
+                    <div class="hud-item" id="level-display">
+                        <span class="hud-label"></span>
+                        <span class="hud-value" id="level-indicator">1/1</span>
+                    </div>
+
+                    <div class="hud-item" id="timer-display">
+                        <span class="hud-icon">⏱️</span>
+                        <span class="hud-value" id="timer">00:00</span>
+                    </div>
+
+                    <button id="theme-toggle" class="nav-btn icon-btn" title="Changer le thème"
+                        aria-label="Mode Nuit/Jour">
+                        🌙
+                    </button>
+
+                    <button id="prev-btn" class="nav-btn icon-btn" title="Niveau précédent"
+                        aria-label="Niveau précédent">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 12H5M12 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="game-container">
+            <img id="game-image" src="" alt="Scène de jeu où est Charlie">
+        </div>
+    </main>
+
+    <div id="victory-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">Bravo ! 🎉</h2>
+            <p id="modal-message">Tu as trouvé la cible en :</p>
+            <p id="final-time" class="time-display">00:00</p>
+            <button id="action-btn">Niveau Suivant</button>
+        </div>
+    </div>
+
+    <footer>
+        <h1>Ce projet est un projet éducatif à but non lucratif. Ce n'est pas un produit officiel Où est Charlie.</h1>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

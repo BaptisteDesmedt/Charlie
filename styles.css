@@ -1,0 +1,543 @@
+/* =========================================
+   VARIABLES & THEME CONFIGURATION
+   ========================================= */
+:root {
+    /* DEFAULT (LIGHT) THEME */
+    --bg-body: #f8f9fa;
+    --text-color: #212529;
+    --header-bg: linear-gradient(90deg, rgba(52,152,219,0.1), rgba(41,128,185,0.08));
+    --header-border: rgba(52, 152, 219, 0.15);
+    --header-shadow: 0 8px 30px 0 rgba(52, 152, 219, 0.1);
+
+    --hud-bg: rgba(52, 152, 219, 0.1);
+    --hud-border: rgba(52, 152, 219, 0.2);
+    --hud-hover: rgba(52,152,219,0.2);
+    --hud-text: #34495e;
+    --hud-icon: #3498db;
+    --hud-value: #2c3e50;
+
+    --highlight-text: #3498db;
+    --highlight-clip: text;
+    --highlight-fill: transparent;
+
+    --btn-bg: #ffffff; /* Keep white button background */
+    --btn-border: rgba(52,152,219,0.2); /* Blue border */
+    --btn-color: #3498db; /* Blue button text */
+    --btn-hover-bg: #3498db; /* Blue hover background */
+    --btn-hover-color: #fff; /* White hover text */
+    --btn-hover-border: #3498db; /* Blue hover border */
+
+    --marker-miss-color: #ff1800; /* Red for misses */
+    --marker-found-color: #27ae60; /* Green for found */
+
+    --footer-bg: #3498db; /* Blue footer background */
+    --footer-text: #fff; /* White footer text */
+
+    --modal-overlay: rgba(0, 0, 0, 0.5); /* Darker overlay for better focus */
+    --modal-bg: #fff; /* White modal background */
+    --modal-border: #3498db; /* Blue modal border */
+    --modal-shadow: 0 20px 50px rgba(52, 152, 219, 0.3); /* Blue shadow */
+    --modal-text: #2c3e50; /* Dark modal text */
+}
+
+/* DARK MODE OVERRIDES */
+body.dark-mode {
+    --bg-body: #050505;
+    --text-color: #ffffff;
+    --header-bg: rgba(10, 10, 10, 0.6);
+    --header-border: rgba(255, 255, 255, 0.08);
+    --header-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+    --hud-bg: rgba(255, 255, 255, 0.03);
+    --hud-border: rgba(255, 255, 255, 0.05);
+    --hud-hover: rgba(255, 255, 255, 0.08);
+    --hud-text: rgba(255, 255, 255, 0.5);
+    --hud-icon: #ff0029;
+    --hud-value: #fff;
+
+    --highlight-text: linear-gradient(to right, #fb667a, #ff0025);
+
+    --btn-bg: rgb(0, 0, 0);
+    --btn-border: rgba(255, 0, 0, 0.72);
+    --btn-color: rgba(255, 0, 0, 0.72);
+    --btn-hover-bg: #ff002b;
+    --btn-hover-color: #fff;
+    --btn-hover-border: #ff0025;
+
+    --footer-bg: transparent;
+    --footer-text: rgba(255, 255, 255, 0.4);
+
+    --modal-overlay: rgba(0, 0, 0, 0.9);
+    --modal-bg: #0f0f0f;
+    --modal-border: rgba(255, 255, 255, 0.1);
+    --modal-shadow: 0 0 50px rgba(233, 69, 96, 0.15);
+    --modal-text: #fff;
+}
+
+/* =========================================
+   RESET & BASE STYLES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* =========================================
+   HEADER & HUD
+   ========================================= */
+header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 10px 20px;
+}
+
+.header-glass {
+    background: var(--header-bg);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--header-border);
+    border-radius: 20px;
+    box-shadow: var(--header-shadow);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.8rem 2rem;
+    transition: all 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGO */
+.logo-container {
+    display: flex;
+    align-items: center;
+    row-gap: 30px;
+    column-gap: 10px;
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+    animation: float 3s ease-in-out infinite;
+    color: var(--hud-icon);
+}
+
+h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+body.dark-mode h1 {
+    color: #fff;
+}
+
+
+h1 .highlight {
+    background: var(--highlight-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* HUD (STATS & CONTROLS) */
+.game-hud {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.hud-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--hud-bg);
+    /* Light glass on red */
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--hud-border);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.hud-item:hover {
+    background: var(--hud-hover);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.hud-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--hud-text);
+    font-weight: 700;
+}
+
+.hud-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--hud-value);
+    font-variant-numeric: tabular-nums;
+}
+
+.hud-icon {
+    font-size: 1.2rem;
+    color: var(--hud-icon);
+}
+
+/* BUTTONS */
+.icon-btn {
+    font-size: 1.8rem;
+    width: 3rem;
+    aspect-ratio: 1 / 1;
+    background: var(--btn-bg);
+    border: 1px solid var(--btn-border);
+    color: var(--btn-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.body.dark-mode .icon-btn {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.icon-btn:hover:not(:disabled) {
+    background: var(--btn-hover-bg);
+    /* Dark contrast on hover */
+    color: var(--btn-hover-color);
+    transform: scale(1.1) rotate(-10deg);
+    border-color: var(--btn-hover-border);
+}
+
+.icon-btn:disabled {
+    cursor: not-allowed;
+    background: #f1f2f6;
+    filter: grayscale(1);
+    box-shadow: none;
+}
+
+
+body.dark-mode .icon-btn:disabled {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.icon-btn svg {
+    stroke-width: 2.5;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header-glass {
+        padding: 0.8rem 1rem;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .hud-label {
+        display: none;
+    }
+
+    .game-hud {
+        gap: 0.8rem;
+    }
+
+    .hud-item {
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.1rem;
+    }
+
+    .logo-icon {
+        font-size: 1.4rem;
+    }
+
+    .hud-item {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .hud-value {
+        font-size: 1rem;
+    }
+}
+
+/* =========================================
+   GAME AREA
+   ========================================= */
+main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    flex: 1;
+    /* Force le conteneur à prendre toute la hauteur disponible du main */
+    width: 100%;
+    /* box-shadow supprimé car on colle aux bords */
+    /* border-radius supprimé */
+    overflow: auto;
+    /* Permet de scroller si l'image est plus grande */
+    background: transparent;
+    /* Plus de fond noir ! */
+    display: flex;
+    cursor: crosshair;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-image {
+    display: block;
+    /* On laisse l'image déterminer sa taille en respectant les contraintes */
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    cursor: crosshair;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    border-radius: 8px;
+}
+
+body.dark-mode #game-image {
+    box-shadow: none;
+}
+
+
+/* Indicateurs de clic */
+.marker-miss {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--marker-miss-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: fadeOut 1s forwards;
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+    z-index: 100;
+    /* Assure que le marqueur est au-dessus de tout */
+}
+
+.marker-found {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--marker-found-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.8), inset 0 0 10px rgba(46, 204, 113, 0.3);
+    z-index: 10;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(46, 204, 113, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+    }
+}
+
+/* =========================================
+   CONFETTI (FIN DU JEU)
+   ========================================= */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #f1c40f;
+    animation: fall linear forwards;
+    z-index: 2000;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--footer-text);
+    background: var(--footer-bg);
+    /* Bold Red */
+    position: relative;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+/* =========================================
+   MODAL (VICTOIRE)
+   ========================================= */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--modal-overlay);
+    /* Light backdrop */
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: var(--modal-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid var(--modal-border);
+    box-shadow: var(--modal-shadow);
+    transform: scale(1);
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: var(--modal-text);
+}
+
+body.dark-mode .modal-content {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    color: var(--modal-text);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.time-display {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 1rem 0 2rem 0;
+    color: var(--text-color);
+    text-shadow: none;
+}
+
+#action-btn {
+    background: var(--btn-hover-bg);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--btn-hover-bg);
+}
+
+#action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--btn-hover-bg);
+    background: var(--btn-hover-bg);
+}
